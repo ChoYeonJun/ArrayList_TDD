@@ -2,14 +2,12 @@ package com.example.arraylist;
 
 public class ArrayList {
 
-    int lastIndex;
     private int size;
     int[] array;
 
     public ArrayList() {
-        lastIndex = 0;
-        size = 2;
-        array = new int[size];
+        size = 0;
+        array = new int[2];
 
     }
 
@@ -18,18 +16,16 @@ public class ArrayList {
     }
 
     public void add(int data){
-        if(lastIndex >= size){
-            size *= 2;
-            int[] temp = new int[size];
-            for(int i = 0; i < lastIndex; i++){
+        if(size >= array.length){
+            int[] temp = new int[array.length*2];
+            for(int i = 0; i < size; i++){
                 temp[i] = array[i];
             }
-
             array = temp.clone();
         }
 
-        array[lastIndex] = data;
-        lastIndex++;
+        array[size] = data;
+        size ++;
     }
 
     public int get(int index){
@@ -37,7 +33,7 @@ public class ArrayList {
     }
 
     public void removeAt(int index){
-        for(int i = index; i < lastIndex-1; i++){
+        for(int i = index; i < size-1; i++){
             array[i] = array[i+1];
         }
         size--;
@@ -49,7 +45,7 @@ public class ArrayList {
 
     public void showAllValues(){
         System.out.println("== 전체 데이터 출력 ==");
-        for(int i = 0; i < lastIndex; i ++)
+        for(int i = 0; i < size; i ++)
             System.out.printf("%d : %d", i, array[i]);
     }
 }
